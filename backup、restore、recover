@@ -1,0 +1,56 @@
+SGA:System Global area
+系统全局区、共享全局区，就是一块内存区
+
+server process 服务器进程
+
+share pool  共享池
+
+Db buffer cache 数据高速缓冲区
+redo log buffer 日志缓冲区
+
+数据库3大文件：.dbf数据文件   .ctl控制文件   .log文件
+5大类进程：CKPT、DBWR、LGWR、SMON、PMON
+
+备份：backup (手工、rman)
+还原：restore      !cp XXX XXX
+恢复：recover 利用日志日志进行前滚恢复（归档、在线）
+
+
+误删了表：
+1.首先对现有的数据库做全备
+2.找到最近的还原文件H2还原restore
+3.利用日志前滚（目的把XXX表找回来）
+4.打开数据库利用数据泵EXPDP导出XXX表
+5.重新还原restore刚刚做好的全备
+6.把之前导出的XXX表IMPDP导入
+ 
+
+闪回：
+show recyclebin;
+flashback table testemp;
+or
+flashback table "............" to before drop;--省略处是回收站recyclebin name 字段的值
+
+闪回的是最近是时间的表
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
